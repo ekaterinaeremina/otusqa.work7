@@ -1,5 +1,6 @@
 package otusqa.steps.personal;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,14 +20,14 @@ public class ProfileSteps extends AbstractSteps {
         super(driver);
         profilePage = new ProfilePage(driver);
     }
-
+    @Step ("Загрузка страницы профиля пользователя")
     public ProfileSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(profilePage.getTabMenu()));
         log.info("Profile page loaded");
         return this;
     }
-
+    @Step ("Получение компаний, на которых пользователь подписан")
     public ArrayList<String> getCompanies()
     {
         if (isElementPresent(profilePage.getCompaniesTable())) {
@@ -43,7 +44,7 @@ public class ProfileSteps extends AbstractSteps {
             return new ArrayList<>();
         }
     }
-
+    @Step ("Получение хабов, на которые пользователь подписан")
     public ArrayList<String> getHubs()
     {
         if (isElementPresent(profilePage.getHubsTable())) {
@@ -60,14 +61,14 @@ public class ProfileSteps extends AbstractSteps {
             return new ArrayList<>();
         }
     }
-
+    @Step ("Получение имени профиля")
     public String getProfileName()
     {
         String name = profilePage.getProfileName().getAttribute("href").split("/")[4];
         log.info("Get profile name "+name);
         return name;
     }
-
+    @Step ("Получение статей в избранном")
     public List<String> getTitleFavoritePosts()
     {
         ArrayList<String> titles = new ArrayList<>();
@@ -77,13 +78,14 @@ public class ProfileSteps extends AbstractSteps {
         return titles;
     }
 
+    @Step
     public String getTitleFavoritePostByIndex(int index)
     {
         String title = getTitleFavoritePosts().get(index);
         log.info("Favorite post with index " + index + " has title "+ title);
         return title;
     }
-
+    @Step
     public ProfileSteps goToFavoritesTab()
     {
         profilePage.getFavoritesTab().click();

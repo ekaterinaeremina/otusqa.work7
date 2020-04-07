@@ -1,5 +1,6 @@
 package otusqa.steps.tabs;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ public class HubsTabSteps extends AbstractSteps {
         super(driver);
         hubsTabPage = new HubsTabPage(driver);
     }
-
+    @Step ("Загрузка страницы Хабы")
     public HubsTabSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(hubsTabPage.getSearchField()));
@@ -28,6 +29,7 @@ public class HubsTabSteps extends AbstractSteps {
         return this;
     }
 
+    @Step ("Поиск хаба по названию {name}")
     public HubSteps searchHubByName(String name)
     {
         inputValue(hubsTabPage.getSearchField(), name);

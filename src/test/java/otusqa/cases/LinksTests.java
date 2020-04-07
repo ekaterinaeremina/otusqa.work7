@@ -1,5 +1,8 @@
 package otusqa.cases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Epics;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -21,6 +24,8 @@ public class LinksTests extends BaseTest {
     private static CompaniesTestData config = ConfigFactory.create(CompaniesTestData.class);
 
     @Test
+    @Epics(value = {@Epic(value = "Соц. сети"), @Epic(value = "Ссылки")})
+    @Description("Тест на проверку работоспособности ссылок на соц. сети")
     public void SocialNetworkLinksTest() {
         log.info("Start SocialNetworkLinksTest");
         SoftAssert softAssert = new SoftAssert();
@@ -38,6 +43,8 @@ public class LinksTests extends BaseTest {
     }
 
     @Test
+    @Epics(value = {@Epic(value = "Проекты"), @Epic(value = "Ссылки")})
+    @Description("Тест на проверку работоспособности ссылок на проекты")
     public void ProjectLinksTest() {
         log.info("Start ProjectLinksTest");
         SoftAssert softAssert = new SoftAssert();
@@ -54,6 +61,8 @@ public class LinksTests extends BaseTest {
     }
 
     @Test
+    @Epic(value = "Ссылки")
+    @Description("Тест на проверку переключений между потоками")
     public void StreamLinksTest() {
         log.info("Start StreamLinksTest");
         SoftAssert softAssert = new SoftAssert();
@@ -70,6 +79,8 @@ public class LinksTests extends BaseTest {
     }
 
     @Test
+    @Epic(value = "Ссылки")
+    @Description("Тест на проверку переключений между вкладками")
     public void TabMenuLinksTest()
     {
         log.info("Start TabMenuLinksTest");
@@ -86,6 +97,8 @@ public class LinksTests extends BaseTest {
     }
 
     @Test
+    @Epics(value = {@Epic(value = "Соц. сети"), @Epic(value = "Сыслки")})
+    @Description("Тест на проверку работоспособности ссылок на регистрацию через соц. сети")
     public void RegisterByLinksTest() {
         log.info("Start RegisterByLinksTest");
         SoftAssert softAssert = new SoftAssert();
@@ -109,6 +122,8 @@ public class LinksTests extends BaseTest {
     }
 
     @Test
+    @Epics(value = {@Epic(value = "Компании"), @Epic(value = "Ссылки")})
+    @Description("Тест на проверку работоспособности ссылки на добавление компании")
     public void AddCompanyLinkTest()
     {
         log.info("Start AddCompanyTest");

@@ -1,5 +1,6 @@
 package otusqa.steps.registerBy;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ public class GithubSigInSteps extends AbstractSteps {
         super(driver);
         githubSigInPage = new GithubSigInPage(driver);
     }
-
+    @Step("Загрузка страницы регистрации через Github")
     public GithubSigInSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(githubSigInPage.getContent()));

@@ -1,5 +1,8 @@
 package otusqa.cases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Epics;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -16,6 +19,8 @@ public class SettingsTests extends BaseTest {
     private static SettingsTestData config = ConfigFactory.create(SettingsTestData.class);
 
     @Test
+    @Epics(value = {@Epic(value = "Профиль"), @Epic(value = "Атрибуты элементов")})
+    @Description("Тест на проверку максимальной длины поля Настоящее имя в настройках профиля")
     public void CheckMaxLengthFullNameTest() throws Exception {
         log.info("Start CheckMaxLengthFullNameTest");
         String realName=config.realName();

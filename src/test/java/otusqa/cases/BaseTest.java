@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -11,6 +13,8 @@ import org.testng.annotations.BeforeClass;
 import otusqa.WebDriverFactory;
 import otusqa.WebDriverName;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class BaseTest {
@@ -21,8 +25,7 @@ public class BaseTest {
     protected static String password = System.getProperty("password");
 
     @BeforeClass
-    public static void setUp()
-    {
+    public static void setUp() throws MalformedURLException {
         driver = WebDriverFactory.create(WebDriverName.valueOf(browser));
         driver.manage().window().maximize();
         log.info("Setup driver");

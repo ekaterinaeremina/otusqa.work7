@@ -1,5 +1,6 @@
 package otusqa.steps;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class RegistrationSteps extends AbstractSteps {
         registrationPage = new RegistrationPage(driver);
     }
 
+    @Step ("Загрузка страницы регистрации")
     public RegistrationSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(registrationPage.getRegisterForm()));
@@ -28,6 +30,7 @@ public class RegistrationSteps extends AbstractSteps {
         return this;
     }
 
+    @Step ("Загрузка страницы регистрации через {method}")
     public AbstractSteps registerBy(RegistrationMethod method) {
         wait.until(ExpectedConditions.visibilityOf(registrationPage.getSocialsButtons()));
         WebElement el = registrationPage.getRegistrationMethodButton(method);

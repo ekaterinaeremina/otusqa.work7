@@ -1,5 +1,6 @@
 package otusqa.steps;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ public class TechMediaSteps extends  AbstractSteps{
         techMediaPage = new TechMediaPage(driver);
     }
 
+    @Step ("Загрузка страницы TechMedia")
     public TechMediaSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(techMediaPage.getServiceCorpblogTitle()));

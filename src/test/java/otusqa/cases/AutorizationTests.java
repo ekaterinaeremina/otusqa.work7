@@ -1,5 +1,7 @@
 package otusqa.cases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,6 +12,8 @@ public class AutorizationTests extends BaseTest {
     private static final Logger log = Logger.getLogger(AutorizationTests.class);
 
     @Test(priority=1)
+    @Epic(value = "Авторизация")
+    @Description("Тест на проверку авторизации")
     public void SignInTest() throws Exception {
         log.info("Start SignInTest");
         CommonSteps commonSteps = new CommonSteps(driver);
@@ -22,6 +26,8 @@ public class AutorizationTests extends BaseTest {
     }
 
     @Test(priority=2)
+    @Epic(value = "Авторизация")
+    @Description("Тест на проверку выхода из учетной записи")
     public void SignOutTest() throws Exception {
         log.info("Start SignOutTest");
         CommonSteps commonSteps = new CommonSteps(driver);
@@ -33,5 +39,4 @@ public class AutorizationTests extends BaseTest {
         Assert.assertEquals(actual, excepted);
         log.info("End SignOutTest");
     }
-
 }

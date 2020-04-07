@@ -1,5 +1,6 @@
 package otusqa.steps.personal;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,7 @@ public class CompanySteps extends AbstractSteps {
         companyPage = new CompanyPage(driver);
     }
 
+    @Step ("Загрузка старницы компании")
     public CompanySteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(companyPage.getTitle()));
@@ -24,6 +26,7 @@ public class CompanySteps extends AbstractSteps {
         return this;
     }
 
+    @Step ("Получение названия компании")
     public String getCompanyName()
     {
         String name = companyPage.getTitle().getText();
@@ -31,6 +34,7 @@ public class CompanySteps extends AbstractSteps {
         return name;
     }
 
+    @Step ("Проверка подписан ли пользователь на компанию")
     public boolean isSubscribed()
     {
         String state = companyPage.getSubscribeButton().getAttribute("data-state");
@@ -40,6 +44,7 @@ public class CompanySteps extends AbstractSteps {
             return true;
     }
 
+    @Step ("Подписка на компанию")
     public CompanySteps subscribeToCompany()
     {
         if (isSubscribed()) {
@@ -51,6 +56,7 @@ public class CompanySteps extends AbstractSteps {
         return this;
     }
 
+    @Step ("Отписка от компании")
     public CompanySteps unsubscribeToCompany()
     {
         if (!isSubscribed()) {

@@ -1,5 +1,8 @@
 package otusqa.cases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Epics;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -20,6 +23,8 @@ public class UsersTests extends BaseTest {
     private static UsersTestData config = ConfigFactory.create(UsersTestData.class);
 
     @Test
+    @Epics(value = {@Epic(value = "Авторы"), @Epic(value = "Избранное")})
+    @Description("Тест на проверку подписки пользователя на автора")
     public void SubscribeToUserTest() throws Exception {
         log.info("Start SubscribeToUserTest");
         String name = config.nameForSubscribe();
@@ -45,6 +50,8 @@ public class UsersTests extends BaseTest {
     }
 
     @Test
+    @Epics(value = {@Epic(value = "Авторы"), @Epic(value = "Отображение данных")})
+    @Description("Тест на проверку отображения рейтинга в поиске и на странице автора")
     public void displayRatingTest()
     {
         log.info("Start displayRatingTest");
@@ -65,6 +72,8 @@ public class UsersTests extends BaseTest {
     }
 
     @Test
+    @Epics(value = {@Epic(value = "Авторы"), @Epic(value = "Отображение данных")})
+    @Description("Тест на проверку отображения кармы в поиске и на странице автора")
     public void displayKarmaTest()
     {
         log.info("Start displayKarmaTest");

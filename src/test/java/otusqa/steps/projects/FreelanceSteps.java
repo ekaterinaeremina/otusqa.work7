@@ -1,5 +1,6 @@
 package otusqa.steps.projects;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ public class FreelanceSteps extends AbstractSteps {
         super(driver);
         freelancePage = new FreelancePage(driver);
     }
-
+    @Step ("Загрузка страницы Фриланс")
     public FreelanceSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(freelancePage.getLanding()));

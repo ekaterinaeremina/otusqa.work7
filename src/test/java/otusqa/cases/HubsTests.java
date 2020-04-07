@@ -1,5 +1,8 @@
 package otusqa.cases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Epics;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -20,6 +23,8 @@ public class HubsTests extends BaseTest {
     private static HubsTestData config = ConfigFactory.create(HubsTestData.class);
 
     @Test
+    @Epics(value = {@Epic(value = "Хабы"), @Epic(value = "Избранное")})
+    @Description("Тест на проверку подписки пользователя на хаб")
     public void SubscribeToHubTest() throws Exception {
         log.info("Start SubscribeToHubTest");
         String hubName = config.hubName();

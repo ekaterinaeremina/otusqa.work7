@@ -1,5 +1,6 @@
 package otusqa.steps;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
@@ -21,32 +22,37 @@ public class MainSteps extends AbstractSteps{
         super(driver);
         mainPage = new MainPage(driver);
     }
-
+    @Step("Открытие главой страницы")
     public MainSteps openMainPage() {
         super.open(mainPage.mainPageRuURL);
         return waitLoading();
     }
 
+    @Step ("Загрузка главной страницы")
     public MainSteps waitLoading() {
         wait.until(ExpectedConditions.visibilityOf(mainPage.getTabsMenu()));
         log.info("Main page loaded");
         return this;
     }
 
+    @Step ("Переход на страницу авторизации")
     public SignInSteps goToSignIn() {
         mainPage.getLoginButton().click();
         log.info("Click Войти");
         return new SignInSteps(driver).waitLoading();
     }
 
+    @Step ("Переход на страницу регистрации")
     public RegistrationSteps goToRegistration() {
         mainPage.getRegistrationButton().click();
         log.info("Click Регистрация");
         return new RegistrationSteps(driver).waitLoading();
     }
 
+    @Step ("Проверка, что пользователь авторизован")
     public boolean isSignIn() { return isElementPresent(mainPage.getUserMenu()); }
 
+    @Step ("Выход из учетной записи")
     public MainSteps signOut() throws Exception {
         if (!isSignIn())
             throw new Exception("There is not signIn");
@@ -57,6 +63,7 @@ public class MainSteps extends AbstractSteps{
         return this;
     }
 
+    @Step ("Переход на {tab} в пользовательском меню")
     private void goToTabInUserMenu(WebElement tab) {
         mainPage.getUserMenu().click();
         wait.until(ExpectedConditions.visibilityOf(tab));
@@ -64,6 +71,7 @@ public class MainSteps extends AbstractSteps{
         tab.click();
     }
 
+    @Step ("Переход в настройки профиля")
     public ProfileSettingsSteps goToProfileSettings()
     {
         goToTabInUserMenu(mainPage.getGoProfileSettinsButton());
@@ -71,12 +79,14 @@ public class MainSteps extends AbstractSteps{
         return new ProfileSettingsSteps(driver).waitLoading();
     }
 
+    @Step ("Переход на страницу профиля")
     public ProfileSteps goToProfileUser() {
         goToTabInUserMenu(mainPage.getGoProfileButton());
         log.info("Click Профиль");
         return new ProfileSteps(driver).waitLoading();
     }
 
+    @Step ("Переход на вкладку {tab}")
     public AbstractSteps tabsMenuNavigateTo(Tab tab) {
         wait.until(ExpectedConditions.visibilityOf(mainPage.getTabElement(tab)));
         mainPage.getTabElement(tab).click();
@@ -98,6 +108,7 @@ public class MainSteps extends AbstractSteps{
         }
     }
 
+    @Step ("Открытие страницы в {network}")
     public void openSocialNetworkPage(SocialNetwork network) {
         wait.until(ExpectedConditions.visibilityOf(mainPage.getContactElement(network)));
         WebElement el = mainPage.getContactElement(network);
@@ -105,6 +116,7 @@ public class MainSteps extends AbstractSteps{
         log.info("Go to " + el.getAttribute("href"));
     }
 
+    @Step ("Переход на поток {stream}")
     public MainSteps navigateToStream(Stream stream) {
         mainPage.getStreamElement(stream).click();
         waitLoading();
@@ -112,8 +124,10 @@ public class MainSteps extends AbstractSteps{
         return this;
     }
 
+    @Step ("Получение заголовка главной страницы")
     public String getPageHeader() { return mainPage.getPageHeader().getText(); }
 
+    @Step ("Открытие страницы {project}")
     public AbstractSteps openProjectPage(Project project) {
         mainPage.getShowDropdown().click();
         wait.until(ExpectedConditions.visibilityOf(mainPage.getProjectElement(project)));

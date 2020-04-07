@@ -1,5 +1,8 @@
 package otusqa.cases;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Epics;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -19,6 +22,8 @@ public class CompaniesTests extends BaseTest {
     private static CompaniesTestData config = ConfigFactory.create(CompaniesTestData.class);
 
     @Test
+    @Epics(value = {@Epic(value = "Компании"), @Epic(value = "Избранное")})
+    @Description("Тест на проверку подписки пользователя на компанию")
     public void SubscribeToCompanyTest() throws Exception {
         log.info("Start SubscribeToCompanyTest");
         String companyName=config.companyName();
@@ -46,6 +51,8 @@ public class CompaniesTests extends BaseTest {
     }
 
     @Test
+    @Epics(value = {@Epic(value = "Компании"), @Epic(value = "Отображение данных")})
+    @Description("Тест на проверку отображения количества компаний для фильтра")
     public void CheckCompanyCounterAfterFilterTest()
     {
         log.info("Start CheckCompanyCounterAfterFilterTest");

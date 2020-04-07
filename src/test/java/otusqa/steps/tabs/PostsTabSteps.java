@@ -1,5 +1,6 @@
 package otusqa.steps.tabs;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,14 +21,14 @@ public class PostsTabSteps extends AbstractSteps {
         super(driver);
         postsTabPage = new PostsTabPage(driver);
     }
-
+    @Step ("Загрзка станицы Статьи")
     public PostsTabSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(postsTabPage.getPostContainer()));
         log.info("PostsTab page loaded");
         return this;
     }
-
+    @Step ("Переход на станицу {id}й рекомендуемой статьи")
     public PostSteps goToRecomendedPostByIndex(int index)
     {
         postsTabPage.getRecomendedPosts().get(index).click();
@@ -35,21 +36,13 @@ public class PostsTabSteps extends AbstractSteps {
         return new PostSteps(driver).waitLoading();
     }
 
+    @Step ("Получение названий рекомендуемых статей")
     public List<String> getRecomendedPost()
     {
         ArrayList<String> result = new ArrayList<>();
         for (WebElement el : postsTabPage.getRecomendedPosts())
             result.add(el.getText());
         log.info("Recomended post: "+ result);
-        return result;
-    }
-
-    public List<String> getNewsTime()
-    {
-        ArrayList<String> result = new ArrayList<>();
-        for (WebElement el : postsTabPage.getNewsTime())
-            result.add(el.getText());
-        log.info("News time on page: "+ result);
         return result;
     }
 }

@@ -1,5 +1,6 @@
 package otusqa.steps;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ public class SignInSteps extends AbstractSteps {
         signInPage = new SignInPage(driver);
     }
 
+    @Step ("Загрузка страницы авторизации")
     public SignInSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(signInPage.getEnterButton()));
@@ -34,6 +36,7 @@ public class SignInSteps extends AbstractSteps {
 
     private void clickEnter() { signInPage.getEnterButton().click(); }
 
+    @Step ("Авторизация")
     public MainSteps signIn(String email, String password)
     {
         setEmail(email);

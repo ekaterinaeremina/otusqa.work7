@@ -1,5 +1,6 @@
 package otusqa.steps.registerBy;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ public class LiveIdSignInSteps extends AbstractSteps {
         super(driver);
         liveIdSignInPage= new LiveIdSignInPage(driver);
     }
-
+    @Step ("Загрузка страницы регистрации через LiveId")
     public LiveIdSignInSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(liveIdSignInPage.getContent()));

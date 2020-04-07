@@ -1,5 +1,6 @@
 package otusqa.steps;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
 public class CommonSteps extends AbstractSteps {
@@ -13,7 +14,6 @@ public class CommonSteps extends AbstractSteps {
             mainSteps.goToSignIn().signIn(login, password);
         return mainSteps;
     }
-
     public MainSteps signOut() throws Exception {
         MainSteps mainSteps = new MainSteps(driver)
                 .openMainPage();

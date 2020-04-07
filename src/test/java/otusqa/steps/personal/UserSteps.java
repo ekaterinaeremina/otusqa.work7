@@ -1,5 +1,6 @@
 package otusqa.steps.personal;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,19 +20,20 @@ public class UserSteps extends AbstractSteps {
         super(driver);
         userPage  = new UserPage(driver);
     }
-
+    @Step ("Загрузка страницы автора")
     public UserSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(userPage.getUserName()));
         log.info("User page loaded");
         return this;
     }
-
+    @Step ("Получение имени автора")
     public String getUserName()
     {
         return userPage.getUserName().getText();
     }
 
+    @Step ("Проверка подписан ли пользователь на автора")
     public boolean isSubscribed()
     {
         String state = userPage.getSubscribeButton().getAttribute("data-state");
@@ -40,7 +42,7 @@ public class UserSteps extends AbstractSteps {
         else
             return true;
     }
-
+    @Step ("Подписка на автора")
     public UserSteps subscribeToUser()
     {
         userPage.getSubscribeButton().click();
@@ -49,7 +51,7 @@ public class UserSteps extends AbstractSteps {
         log.info("Subscribe success");
         return this;
     }
-
+    @Step ("Отписка от автора")
     public UserSteps unsubscribeToUser()
     {
         userPage.getSubscribeButton().click();
@@ -59,6 +61,7 @@ public class UserSteps extends AbstractSteps {
         return this;
     }
 
+    @Step ("Получение подписчиков автора")
     public List<String> getSubscribers() {
         userPage.getSubscriberButton().click();
         if (isElementPresent(userPage.getSubscriberTable())) {
@@ -76,11 +79,12 @@ public class UserSteps extends AbstractSteps {
         }
     }
 
+    @Step ("Получение рейтинга автора")
     public String getRatingValue()
     {
         return userPage.getRating().getText();
     }
-
+    @Step ("Получение кармы автора")
     public String getKarmaValue()
     {
         return userPage.getKarma().getText();

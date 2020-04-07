@@ -1,5 +1,6 @@
 package otusqa.steps.personal;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,19 +16,20 @@ public class HubSteps extends AbstractSteps {
         super(driver);
         hubPage = new HubPage(driver);
     }
-
+    @Step ("Загрузка страницы хаба")
     public HubSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(hubPage.getTitle()));
         log.info("Hub page loaded");
         return this;
     }
-
+    @Step ("Получение названия хаба")
     public String getHubName()
     {
         return hubPage.getTitle().getText();
     }
 
+    @Step ("Проверка подписан ли пользователь на хаб")
     public boolean isSubscribed()
     {
         String state = hubPage.getSubscribeButton().getAttribute("data-state");
@@ -36,7 +38,7 @@ public class HubSteps extends AbstractSteps {
         else
             return true;
     }
-
+    @Step ("Подписка на хаб")
     public HubSteps subscribeToHub()
     {
         if (isSubscribed()) {
@@ -47,7 +49,7 @@ public class HubSteps extends AbstractSteps {
         log.info("User subscribe to hub");
         return this;
     }
-
+    @Step ("Отписка от хаба")
     public HubSteps unsubscribeToHub()
     {
         if (!isSubscribed()) {

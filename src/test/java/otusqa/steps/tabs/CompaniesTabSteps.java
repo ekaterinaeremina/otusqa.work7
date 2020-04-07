@@ -1,5 +1,6 @@
 package otusqa.steps.tabs;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,14 +21,14 @@ public class CompaniesTabSteps extends AbstractSteps {
         super(driver);
         companiesTabPage = new CompaniesTabPage(driver);
     }
-
+    @Step ("Загрузка страницы Компании")
     public CompaniesTabSteps waitLoading()
     {
         wait.until(ExpectedConditions.visibilityOf(companiesTabPage.getSearchField()));
         log.info("CompaniesTab page loaded");
         return this;
     }
-
+    @Step ("Поиск компании по названию {name}")
     public CompanySteps searchCompanyByName(String name)
     {
         inputValue(companiesTabPage.getSearchField(), name);
@@ -45,6 +46,7 @@ public class CompaniesTabSteps extends AbstractSteps {
         }
     }
 
+    @Step ("Фильтр компаний {branch}")
     public CompaniesTabSteps filter(String branch)
     {
         List<WebElement> f = companiesTabPage.getFilters();
@@ -62,6 +64,7 @@ public class CompaniesTabSteps extends AbstractSteps {
         return this;
     }
 
+    @Step ("Получение числа компаний по фильтру {branch} в меню ")
     public String getCountCompanyOnFilterMenu(String branch)
     {
         List<WebElement> f = companiesTabPage.getFilters();
@@ -92,6 +95,8 @@ public class CompaniesTabSteps extends AbstractSteps {
             return new ArrayList<>();
         }
     }
+
+    @Step ("Получение компаний в результатах поиска")
     public List<String> getCompanies()
     {
         ArrayList<String> result = new ArrayList<String>();
@@ -106,6 +111,7 @@ public class CompaniesTabSteps extends AbstractSteps {
         return result;
     }
 
+    @Step ("Нажатие кнопки Добавить компанию")
     public TechMediaSteps addCompany()
     {
         companiesTabPage.getAddCompanyButton().click();
