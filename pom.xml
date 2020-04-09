@@ -96,6 +96,7 @@
           </argLine>
           <systemPropertyVariables>
             <browser>{broswer}</browser>
+			<browser>chrome</browser>
             <login>{login}</login>
             <password>{password}</password>
           </systemPropertyVariables>
