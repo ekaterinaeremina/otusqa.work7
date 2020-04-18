@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import otusqa.pages.AbstractPage;
 
 public class AbstractSteps {
-	//Test comment
+	
     protected WebDriver driver;
     private static final Logger log = Logger.getLogger(AbstractPage.class);
     protected WebDriverWait wait;
